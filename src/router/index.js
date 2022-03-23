@@ -3,6 +3,10 @@ import VueRouter from 'vue-router'
 import Home from '../components/Home.vue'
 import About from '../components/About.vue'
 import Work from '../components/Work.vue'
+import Login from '../components/Login.vue'
+import MyPage from '../components/Mypage.vue'
+
+import Store from '../store/index.js'
 
 Vue.use(VueRouter)
 
@@ -21,17 +25,32 @@ const routes = [
     path: '/work',
     name: 'Work',
     component: Work
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/mypage',
+    name: 'MyPage',
+    component: MyPage,
+    meta: { requiresAuth: true }
   }
 ]
 
 const router = new VueRouter({
-  scrollBehavior (to, from, savedPosition) {
-    // ハッシュがある時にはその地点へとスクロールする
-    return to.hash ? { selector: to.hash, offset: { x: 0, y: 64 } } : { x: 0, y: 0 }
-  },
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth) && !Store.state.userToken) {
+    next({ path: '/login', query: { redirect: to.fullPath } })
+  } else {
+    next()
+  }
 })
 
 export default router

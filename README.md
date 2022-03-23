@@ -70,6 +70,13 @@ sass-loaderのgithubでv7.3.1のREADMEにあったwebpack.configの記述方法�
     }
 ```
 
+### データの永続化
+```
+WebStorageの中でもlocalStorageとsessionStorageがありますが、localStorageはブラウザを閉じてもデータを保持するのに対して、sessionStorageはブラウザを閉じるとデータは破棄されます。
+ブラウザのリロード時だけデータを保持したいのでsessionStorageを使用
+```
+`npm install --save vuex-persistedstate`
+
 
 
 # simple-vue-website-sample

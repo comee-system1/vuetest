@@ -23,6 +23,10 @@ export default {
     {
       name: 'ACCESS',
       url: '/access'
+    },
+    {
+      name: 'Mypage',
+      url: '/mypage'
     }
   ],
   // 画像パスはrequireで囲み,モジュールとして読み込む必要があります。
