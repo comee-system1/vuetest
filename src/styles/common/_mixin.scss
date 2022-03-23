@@ -8,7 +8,9 @@ $sp-max: calc($xs - 1)px;
 $tb-min: $xs + px;
 $tb-max: calc($sm - 1)px;
 $pc-min: $sm + px;
- 
+
+$color_pink: #e65f78;
+
 /* PC */
 @mixin display_pc {
   @media (min-width: $pc-min) {
