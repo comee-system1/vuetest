@@ -1,3 +1,6 @@
+#　参考サイト
+`https://yacchi-engineer.com/?p=1290`
+
 ## Vuetify2のインストール
 ```
 Vuetifyを使用することでcssをコーディングすることなく、ボタンやハンバーガメニュー、タブなどWebサイトに最低限必要な機能を実装することができます。
@@ -28,6 +31,44 @@ Vuetifyのグリッドシステムはbootstrapのグリッドシステムに準�
 
 ```
 
+## scssのインストール
+`options has an unknown property 'prependData'. These properties are valid`
+上記エラーが出たためscssをバージョンダウンする
+
+ npm install sass-loader node-sass --save-dev
+
+バージョン違いのエラーが表示
+
+バージョンを指定して再インストール
+npm install --save-dev sass-loader@7.0.3
+
+npm install node-sass --save-dev
+
+
+
+### vueCLI3で作ったプロジェクトで、vue.config.jsでのオプション設定でグローバルなscssファイルを読み込もうとしたがうまくいかず。
+
+### 動かなかった設定
+```
+   loaderOptions: {
+      scss: {
+        prependData: '@import "./src/styles/common/common.scss";'
+      }
+    }
+```
+
+```
+sass-loaderのgithubでv7.3.1のREADMEにあったwebpack.configの記述方法の中に「data」を指定してねと書いてある。
+```
+
+### 解決
+```
+    loaderOptions: {
+      scss: {
+        data: '@import "./src/styles/common/common.scss";'
+      }
+    }
+```
 
 
 
@@ -74,3 +115,8 @@ Sassのコンパイラは「dart-sass」
 「ESLint + Standard config」
 
 ```
+
+# v-containerプロパティのメモ
+- fluid : 余白を削除してくれる
+- fill-height : v-container内の要素を上下中央寄せしてくれる
+
