@@ -4,15 +4,23 @@ import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
+const getDefaultState = () => {
+  return {
     userId: '',
-    userToken: ''
-  },
+    userToken: '',
+    message: 'Hello Vuex Store'
+  }
+}
+
+export default new Vuex.Store({
+  state: getDefaultState(),
   mutations: {
     updateUser (state, user) {
       state.userId = user.userId
       state.userToken = user.userToken
+    },
+    reset (state) {
+      Object.assign(state, getDefaultState())
     }
   },
   actions: {

@@ -7,6 +7,7 @@
         <v-tab v-for="(menuItem, index) in menuItems" :key="index" :to="menuItem.url">
           {{ menuItem.name }}
         </v-tab>
+        <v-tab @click="logout">ログアウト</v-tab>
       </v-tabs>
     </v-app-bar>
     <v-navigation-drawer
@@ -22,6 +23,9 @@
           >
           <v-list-item-title>{{ menuItem.name }}</v-list-item-title>
         </v-list-item>
+        <v-list-item>
+          <v-btn depressed color="error" @click="logout">ログアウト</v-btn>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
   </header>
@@ -36,6 +40,12 @@ export default {
     return {
       drawer: false,
       menuItems: constants.menuItem
+    }
+  },
+  methods: {
+    logout () {
+      this.$store.commit('reset')
+      this.$router.go({ path: '/', force: true })
     }
   }
 }
